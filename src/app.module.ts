@@ -43,6 +43,7 @@ import { AppointmentsModule } from './modules/appointments/appointments.module';
 import { PrescriptionsModule } from './modules/prescriptions/prescriptions.module';
 import { ChiefComplaintsModule } from './modules/chief-complaints/chief-complaints.module';
 import { SustainabilityModule } from './modules/sustainability/sustainability.module';
+import { DestinationsModule } from './modules/destinations/destinations.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -103,6 +104,7 @@ const ENV = process.env.NODE_ENV;
     RolesModule,
     HeroModule,
     SustainabilityModule,
+    DestinationsModule,
     AboutModule,
     EducationModule,
     ServicesModule,

@@ -110,6 +110,13 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 17,
   },
   {
+    label: 'Destinations',
+    href: '/dashboard/destinations/all-destinations',
+    icon: 'MapPin',
+    key: 'destinations',
+    order: 18,
+  },
+  {
     label: 'About Section',
     href: '/dashboard/about/all-about',
     icon: 'UserRound',
