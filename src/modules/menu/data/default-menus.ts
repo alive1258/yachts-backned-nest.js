@@ -103,6 +103,13 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 8,
   },
   {
+    label: 'Sustainability Section',
+    href: '/dashboard/sustainability/all-sustainability',
+    icon: 'Leaf',
+    key: 'sustainability',
+    order: 17,
+  },
+  {
     label: 'About Section',
     href: '/dashboard/about/all-about',
     icon: 'UserRound',

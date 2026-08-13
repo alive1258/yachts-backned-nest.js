@@ -42,6 +42,7 @@ import { ChambersModule } from './modules/chambers/chambers.module';
 import { AppointmentsModule } from './modules/appointments/appointments.module';
 import { PrescriptionsModule } from './modules/prescriptions/prescriptions.module';
 import { ChiefComplaintsModule } from './modules/chief-complaints/chief-complaints.module';
+import { SustainabilityModule } from './modules/sustainability/sustainability.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -101,6 +102,7 @@ const ENV = process.env.NODE_ENV;
     MenuModule,
     RolesModule,
     HeroModule,
+    SustainabilityModule,
     AboutModule,
     EducationModule,
     ServicesModule,
