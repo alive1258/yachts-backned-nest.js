@@ -1,0 +1,27 @@
+import { IsObject, IsOptional, IsPositive, IsString } from 'class-validator';
+
+export class PaginationQueryDto {
+  @IsOptional()
+  @IsPositive()
+  limit: number = 10;
+
+  @IsOptional()
+  @IsPositive()
+  page: number = 1;
+
+  @IsOptional()
+  @IsString()
+  search?: string;
+
+  @IsOptional()
+  @IsObject()
+  filters?: Record<string, any>;
+
+  @IsOptional()
+  @IsString()
+  sort_by?: string = 'created_at';
+
+  @IsOptional()
+  @IsString()
+  sort_order?: string = 'created_at';
+}
