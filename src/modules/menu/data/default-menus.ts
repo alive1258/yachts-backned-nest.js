@@ -131,6 +131,13 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 24,
   },
   {
+    label: 'Events & Boat Shows',
+    href: '/dashboard/events/all-events',
+    icon: 'CalendarDays',
+    key: 'events',
+    order: 25,
+  },
+  {
     label: 'Destinations',
     href: '/dashboard/destinations/all-destinations',
     icon: 'MapPin',

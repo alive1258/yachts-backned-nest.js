@@ -50,6 +50,7 @@ import { AboutStoryModule } from './modules/about-story/about-story.module';
 import { SustainabilityIntroModule } from './modules/sustainability-intro/sustainability-intro.module';
 import { SustainabilityPillarsModule } from './modules/sustainability-pillars/sustainability-pillars.module';
 import { SustainabilityRoadmapModule } from './modules/sustainability-roadmap/sustainability-roadmap.module';
+import { EventsModule } from './modules/events/events.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -113,6 +114,7 @@ const ENV = process.env.NODE_ENV;
     SustainabilityIntroModule,
     SustainabilityPillarsModule,
     SustainabilityRoadmapModule,
+    EventsModule,
     DestinationsModule,
     AboutModule,
     AboutExploreModule,
