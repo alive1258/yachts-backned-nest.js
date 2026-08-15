@@ -47,6 +47,14 @@ import { DestinationsModule } from './modules/destinations/destinations.module';
 import { AboutExploreModule } from './modules/about-explore/about-explore.module';
 import { AboutStatsModule } from './modules/about-stats/about-stats.module';
 import { AboutStoryModule } from './modules/about-story/about-story.module';
+import { SustainabilityIntroModule } from './modules/sustainability-intro/sustainability-intro.module';
+import { SustainabilityPillarsModule } from './modules/sustainability-pillars/sustainability-pillars.module';
+import { SustainabilityRoadmapModule } from './modules/sustainability-roadmap/sustainability-roadmap.module';
+import { EventsModule } from './modules/events/events.module';
+import { PortfolioModule } from './modules/portfolio/portfolio.module';
+import { InnovationConceptsModule } from './modules/innovation-concepts/innovation-concepts.module';
+import { LifeAboardPhotosModule } from './modules/life-aboard-photos/life-aboard-photos.module';
+import { YachtsModule } from './modules/yachts/yachts.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -107,6 +115,14 @@ const ENV = process.env.NODE_ENV;
     RolesModule,
     HeroModule,
     SustainabilityModule,
+    SustainabilityIntroModule,
+    SustainabilityPillarsModule,
+    SustainabilityRoadmapModule,
+    EventsModule,
+    PortfolioModule,
+    InnovationConceptsModule,
+    LifeAboardPhotosModule,
+    YachtsModule,
     DestinationsModule,
     AboutModule,
     AboutExploreModule,
