@@ -52,6 +52,8 @@ import { SustainabilityPillarsModule } from './modules/sustainability-pillars/su
 import { SustainabilityRoadmapModule } from './modules/sustainability-roadmap/sustainability-roadmap.module';
 import { EventsModule } from './modules/events/events.module';
 import { PortfolioModule } from './modules/portfolio/portfolio.module';
+import { InnovationConceptsModule } from './modules/innovation-concepts/innovation-concepts.module';
+import { LifeAboardPhotosModule } from './modules/life-aboard-photos/life-aboard-photos.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -117,6 +119,8 @@ const ENV = process.env.NODE_ENV;
     SustainabilityRoadmapModule,
     EventsModule,
     PortfolioModule,
+    InnovationConceptsModule,
+    LifeAboardPhotosModule,
     DestinationsModule,
     AboutModule,
     AboutExploreModule,

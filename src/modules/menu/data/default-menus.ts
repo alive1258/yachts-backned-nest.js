@@ -145,6 +145,20 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 26,
   },
   {
+    label: 'Innovation Concepts',
+    href: '/dashboard/innovation-concepts/all-innovation-concepts',
+    icon: 'Sparkles',
+    key: 'innovation-concepts',
+    order: 27,
+  },
+  {
+    label: 'Life Aboard Photos',
+    href: '/dashboard/life-aboard-photos/all-life-aboard-photos',
+    icon: 'Images',
+    key: 'life-aboard-photos',
+    order: 28,
+  },
+  {
     label: 'Destinations',
     href: '/dashboard/destinations/all-destinations',
     icon: 'MapPin',
