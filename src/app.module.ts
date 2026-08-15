@@ -54,6 +54,7 @@ import { EventsModule } from './modules/events/events.module';
 import { PortfolioModule } from './modules/portfolio/portfolio.module';
 import { InnovationConceptsModule } from './modules/innovation-concepts/innovation-concepts.module';
 import { LifeAboardPhotosModule } from './modules/life-aboard-photos/life-aboard-photos.module';
+import { YachtsModule } from './modules/yachts/yachts.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -121,6 +122,7 @@ const ENV = process.env.NODE_ENV;
     PortfolioModule,
     InnovationConceptsModule,
     LifeAboardPhotosModule,
+    YachtsModule,
     DestinationsModule,
     AboutModule,
     AboutExploreModule,

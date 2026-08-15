@@ -159,6 +159,13 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 28,
   },
   {
+    label: 'Yacht Fleet',
+    href: '/dashboard/yachts/all-yachts',
+    icon: 'Ship',
+    key: 'yachts',
+    order: 29,
+  },
+  {
     label: 'Destinations',
     href: '/dashboard/destinations/all-destinations',
     icon: 'MapPin',
