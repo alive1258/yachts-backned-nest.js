@@ -138,6 +138,13 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 25,
   },
   {
+    label: 'Luxury Charter Portfolio',
+    href: '/dashboard/portfolio/all-portfolio',
+    icon: 'Gem',
+    key: 'portfolio',
+    order: 26,
+  },
+  {
     label: 'Destinations',
     href: '/dashboard/destinations/all-destinations',
     icon: 'MapPin',

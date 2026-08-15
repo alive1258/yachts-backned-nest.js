@@ -51,6 +51,7 @@ import { SustainabilityIntroModule } from './modules/sustainability-intro/sustai
 import { SustainabilityPillarsModule } from './modules/sustainability-pillars/sustainability-pillars.module';
 import { SustainabilityRoadmapModule } from './modules/sustainability-roadmap/sustainability-roadmap.module';
 import { EventsModule } from './modules/events/events.module';
+import { PortfolioModule } from './modules/portfolio/portfolio.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -115,6 +116,7 @@ const ENV = process.env.NODE_ENV;
     SustainabilityPillarsModule,
     SustainabilityRoadmapModule,
     EventsModule,
+    PortfolioModule,
     DestinationsModule,
     AboutModule,
     AboutExploreModule,
