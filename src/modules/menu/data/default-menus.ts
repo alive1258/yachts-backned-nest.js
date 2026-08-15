@@ -138,6 +138,13 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 20,
   },
   {
+    label: 'About Story',
+    href: '/dashboard/about-story/all-about-story',
+    icon: 'BookOpen',
+    key: 'about-story',
+    order: 21,
+  },
+  {
     label: 'Education Section',
     href: '/dashboard/education/all-education',
     icon: 'GraduationCap',

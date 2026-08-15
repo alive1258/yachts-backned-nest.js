@@ -46,6 +46,7 @@ import { SustainabilityModule } from './modules/sustainability/sustainability.mo
 import { DestinationsModule } from './modules/destinations/destinations.module';
 import { AboutExploreModule } from './modules/about-explore/about-explore.module';
 import { AboutStatsModule } from './modules/about-stats/about-stats.module';
+import { AboutStoryModule } from './modules/about-story/about-story.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -110,6 +111,7 @@ const ENV = process.env.NODE_ENV;
     AboutModule,
     AboutExploreModule,
     AboutStatsModule,
+    AboutStoryModule,
     EducationModule,
     ServicesModule,
     GalleryModule,
