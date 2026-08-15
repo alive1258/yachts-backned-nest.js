@@ -131,6 +131,13 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 19,
   },
   {
+    label: 'About Stats',
+    href: '/dashboard/about-stats/all-about-stats',
+    icon: 'BarChart3',
+    key: 'about-stats',
+    order: 20,
+  },
+  {
     label: 'Education Section',
     href: '/dashboard/education/all-education',
     icon: 'GraduationCap',
