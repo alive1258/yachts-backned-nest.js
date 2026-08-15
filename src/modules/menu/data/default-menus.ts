@@ -110,6 +110,27 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 17,
   },
   {
+    label: 'Sustainability Page Intro',
+    href: '/dashboard/sustainability-intro/all-sustainability-intro',
+    icon: 'BookOpen',
+    key: 'sustainability-intro',
+    order: 22,
+  },
+  {
+    label: 'Sustainability Pillars',
+    href: '/dashboard/sustainability-pillars/all-sustainability-pillars',
+    icon: 'Leaf',
+    key: 'sustainability-pillars',
+    order: 23,
+  },
+  {
+    label: 'Sustainability Roadmap',
+    href: '/dashboard/sustainability-roadmap/all-sustainability-roadmap',
+    icon: 'Milestone',
+    key: 'sustainability-roadmap',
+    order: 24,
+  },
+  {
     label: 'Destinations',
     href: '/dashboard/destinations/all-destinations',
     icon: 'MapPin',
