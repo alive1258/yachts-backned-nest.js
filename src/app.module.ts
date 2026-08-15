@@ -44,6 +44,7 @@ import { PrescriptionsModule } from './modules/prescriptions/prescriptions.modul
 import { ChiefComplaintsModule } from './modules/chief-complaints/chief-complaints.module';
 import { SustainabilityModule } from './modules/sustainability/sustainability.module';
 import { DestinationsModule } from './modules/destinations/destinations.module';
+import { AboutExploreModule } from './modules/about-explore/about-explore.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -106,6 +107,7 @@ const ENV = process.env.NODE_ENV;
     SustainabilityModule,
     DestinationsModule,
     AboutModule,
+    AboutExploreModule,
     EducationModule,
     ServicesModule,
     GalleryModule,

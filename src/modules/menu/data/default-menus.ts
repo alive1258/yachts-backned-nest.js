@@ -124,6 +124,13 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 9,
   },
   {
+    label: 'About Explore Cards',
+    href: '/dashboard/about-explore/all-about-explore',
+    icon: 'Compass',
+    key: 'about-explore',
+    order: 19,
+  },
+  {
     label: 'Education Section',
     href: '/dashboard/education/all-education',
     icon: 'GraduationCap',
