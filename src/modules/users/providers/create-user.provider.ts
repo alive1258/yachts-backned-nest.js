@@ -12,7 +12,7 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { HashingProvider } from 'src/auth/providers/hashing.provider';
 import { MailService } from 'src/modules/mail/mail.service';
 
-const DEFAULT_SIGNUP_ROLE_SLUG = 'user';
+export const DEFAULT_SIGNUP_ROLE_SLUG = 'user';
 
 @Injectable()
 export class CreateUserProvider {

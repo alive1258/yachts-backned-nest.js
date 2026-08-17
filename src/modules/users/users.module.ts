@@ -31,6 +31,7 @@ import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { CreateUserProvider } from './providers/create-user.provider';
 import { FindOneUserByEmailProvider } from './providers/find-one-user-by-email.provider';
+import { SuperAdminSeederProvider } from './providers/super-admin-seeder.provider';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Role } from 'src/modules/roles/entities/role.entity';
@@ -61,7 +62,12 @@ import { JwtModule } from '@nestjs/jwt';
     }),
   ],
   controllers: [UsersController],
-  providers: [UsersService, CreateUserProvider, FindOneUserByEmailProvider],
+  providers: [
+    UsersService,
+    CreateUserProvider,
+    FindOneUserByEmailProvider,
+    SuperAdminSeederProvider,
+  ],
   exports: [UsersService],
 })
 export class UsersModule {}

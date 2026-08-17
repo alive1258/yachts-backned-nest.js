@@ -68,12 +68,12 @@ export class MailService {
     });
 
     if (!existingOtp) {
-      throw new RequestTimeoutException(
-        'No existing OTP found for this user.',
-        {
-          description: 'OTP not found',
-        },
-      );
+      // Staff/admin accounts created outside the self-serve signup flow
+      // (e.g. seeded Super Admin, employees added via the admin panel)
+      // never get an initial OTP row from sendOtp() — create one here
+      // instead of failing their first login.
+      await this.sendOtp(user);
+      return { id: user.id };
     }
 
     const now = new Date();
