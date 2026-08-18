@@ -242,4 +242,18 @@ export const defaultMenus: DefaultMenuItem[] = [
     key: 'account',
     order: 7,
   },
+  {
+    label: 'Bookings',
+    href: '/dashboard/bookings/all-bookings',
+    icon: 'CalendarDays',
+    key: 'bookings',
+    order: 8,
+  },
+  {
+    label: 'Payments',
+    href: '/dashboard/payments/all-payments',
+    icon: 'CreditCard',
+    key: 'payments',
+    order: 9,
+  },
 ];

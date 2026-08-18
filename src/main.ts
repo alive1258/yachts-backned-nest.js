@@ -9,7 +9,13 @@ import helmet from 'helmet';
 import compression from 'compression';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  // rawBody:true keeps req.rawBody (a Buffer) available alongside the
+  // normal parsed JSON body — needed by the Stripe webhook route to verify
+  // the request signature, without disabling JSON parsing for every other
+  // route.
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    rawBody: true,
+  });
 
   // Security headers + response compression. The global ValidationPipe and
   // ClassSerializerInterceptor are registered once, via APP_PIPE/

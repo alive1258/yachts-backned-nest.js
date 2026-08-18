@@ -60,6 +60,19 @@ export class QuestionAnswersController {
   }
 
   @ApiDoc({
+    summary: 'Get active Question Answers',
+    description:
+      'Retrieves every active Question Answer, for the public FAQ section.',
+    response: QuestionAnswerResponseDto,
+    isArray: true,
+    status: HttpStatus.OK,
+  })
+  @Get('active')
+  findActive() {
+    return this.questionAnswersService.findActive();
+  }
+
+  @ApiDoc({
     summary: 'Get single Question Answer',
     description: 'Retrieve a single Question Answer by UUID.',
     response: QuestionAnswerResponseDto,
