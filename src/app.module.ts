@@ -53,6 +53,7 @@ import { YachtsModule } from './modules/yachts/yachts.module';
 import { ExperiencesModule } from './modules/experiences/experiences.module';
 import { BookingsModule } from './modules/bookings/bookings.module';
 import { PaymentsModule } from './modules/payments/payments.module';
+import { ChatModule } from './modules/chat/chat.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -133,6 +134,7 @@ const ENV = process.env.NODE_ENV;
     ExperiencesModule,
     BookingsModule,
     PaymentsModule,
+    ChatModule,
   ],
 
   controllers: [AppController],

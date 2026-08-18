@@ -7,6 +7,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import compression from 'compression';
+import { getAllowedOrigins } from './config/cors-origins';
+import { SocketIoAdapter } from './common/adapters/socket-io.adapter';
 
 async function bootstrap() {
   // rawBody:true keeps req.rawBody (a Buffer) available alongside the
@@ -70,13 +72,13 @@ async function bootstrap() {
 
   app.use(cookieParser());
 
+  // Real-time chat (Socket.IO) — must share the HTTP layer's CORS/credentials
+  // setup, since the handshake carries the same httpOnly auth cookie.
+  app.useWebSocketAdapter(new SocketIoAdapter(app, configService));
+
   // CORS Configaration
   app.enableCors({
-    origin: [
-      'http://localhost:3000',
-      'https://medico-e-commerce-website-next-js-f.vercel.app',
-      configService.getOrThrow<string>('FRONTEND_URL'),
-    ],
+    origin: getAllowedOrigins(configService),
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: [
