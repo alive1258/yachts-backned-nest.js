@@ -41,10 +41,8 @@ async function bootstrap() {
    * Swagger API documentation configuration:
    */
   const config = new DocumentBuilder()
-    .setTitle('Medico—Pharmacy E-Commerce Platform Backend Api')
-    .setDescription(
-      'Nest Medico—Pharmacy E-Commerce Platform Backend Api Documentation',
-    )
+    .setTitle('Sustainable Yachts Backend Api')
+    .setDescription('Nest Sustainable Yachts Backend Api Documentation')
     .addServer('http://localhost:5000/api/v1')
     .setTermsOfService('http://localhost:5000/api/v1/terms-of-conditions')
     .setVersion('1.0.0')
@@ -67,7 +65,7 @@ async function bootstrap() {
       tagsSorter: 'alpha',
       operationSorter: 'alpha',
     },
-    customSiteTitle: 'Medico—Pharmacy E-Commerce Platform Backend Api',
+    customSiteTitle: 'Sustainable Yachts Backend Api',
   });
 
   app.use(cookieParser());
