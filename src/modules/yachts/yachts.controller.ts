@@ -19,6 +19,7 @@ import type { YachtUploadFiles } from './yachts.service';
 import { CreateYachtDto, YachtResponseDto } from './dto/create-yacht.dto';
 import { UpdateYachtDto } from './dto/update-yacht.dto';
 import { GetYachtDto } from './dto/get-yacht.dto';
+import { SearchActiveYachtsDto } from './dto/search-active-yachts.dto';
 import { ApiDoc } from 'src/auth/decorators/swagger.decorator';
 import { JwtOrApiKeyGuard } from 'src/auth/guards/jwt-or-api-key.guard';
 import { PermissionsGuard } from 'src/auth/guards/permissions.guard';
@@ -72,14 +73,25 @@ export class YachtsController {
   @ApiDoc({
     summary: 'Get active Yachts',
     description:
-      'Retrieves every active yacht, ordered by position, for the public fleet page.',
+      'Retrieves every active yacht, ordered by position, for the public fleet page. Supports optional region and guests_min filters for the site search.',
     response: YachtResponseDto,
     isArray: true,
     status: HttpStatus.OK,
   })
   @Get('active')
-  findActive() {
-    return this.yachtsService.findActive();
+  findActive(@Query() query: SearchActiveYachtsDto) {
+    return this.yachtsService.findActive(query);
+  }
+
+  @ApiDoc({
+    summary: 'Get active cruising regions',
+    description:
+      'Retrieves the distinct cruising regions across active yachts, for populating the site search destination options.',
+    status: HttpStatus.OK,
+  })
+  @Get('regions')
+  findRegions() {
+    return this.yachtsService.findActiveRegions();
   }
 
   @ApiDoc({

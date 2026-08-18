@@ -1,0 +1,86 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
+import {
+  IsBoolean,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from 'class-validator';
+import { TransformToBoolean } from 'src/modules/blog-category/dto/create-blog-category.dto';
+
+export class CreateExperienceDto {
+  @ApiProperty({
+    description: 'Experience title',
+    example: 'Water Sports & Adventure',
+  })
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(255)
+  title: string;
+
+  @ApiPropertyOptional({
+    description: 'Experience description',
+    example: 'Jet skis, tenders, and on-water thrills off the swim deck.',
+  })
+  @IsString()
+  @IsOptional()
+  description?: string;
+
+  @ApiPropertyOptional({
+    description: 'Display order (lowest first)',
+    example: 1,
+  })
+  @IsInt()
+  @IsOptional()
+  @Transform(({ value }) => {
+    if (value === undefined || value === null || value === '') {
+      return undefined;
+    }
+    const parsed = Number(value);
+    return Number.isNaN(parsed) ? undefined : parsed;
+  })
+  position?: number;
+
+  @ApiPropertyOptional({ description: 'Is active', example: true, default: true })
+  @TransformToBoolean()
+  @IsOptional()
+  @IsBoolean()
+  is_active?: any;
+
+  @ApiPropertyOptional({
+    description: 'Experience photo (set internally from the uploaded file)',
+  })
+  @IsOptional()
+  image?: string;
+}
+
+export class ExperienceResponseDto {
+  @ApiProperty()
+  id: string;
+
+  @ApiProperty()
+  title: string;
+
+  @ApiPropertyOptional()
+  description?: string;
+
+  @ApiPropertyOptional()
+  image?: string;
+
+  @ApiProperty()
+  position: number;
+
+  @ApiProperty()
+  is_active: boolean;
+
+  @ApiProperty()
+  created_at: Date;
+
+  @ApiProperty()
+  updated_at: Date;
+
+  @ApiPropertyOptional()
+  deleted_at?: Date;
+}

@@ -33,15 +33,10 @@ import { MenuModule } from './modules/menu/menu.module';
 import { RolesModule } from './modules/roles/roles.module';
 import { HeroModule } from './modules/hero/hero.module';
 import { AboutModule } from './modules/about/about.module';
-import { EducationModule } from './modules/education/education.module';
 import { ServicesModule } from './modules/services/services.module';
 import { GalleryModule } from './modules/gallery/gallery.module';
 import { TestimonialsModule } from './modules/testimonials/testimonials.module';
 import { ClientVideoReviewsModule } from './modules/client-video-reviews/client-video-reviews.module';
-import { ChambersModule } from './modules/chambers/chambers.module';
-import { AppointmentsModule } from './modules/appointments/appointments.module';
-import { PrescriptionsModule } from './modules/prescriptions/prescriptions.module';
-import { ChiefComplaintsModule } from './modules/chief-complaints/chief-complaints.module';
 import { SustainabilityModule } from './modules/sustainability/sustainability.module';
 import { DestinationsModule } from './modules/destinations/destinations.module';
 import { AboutExploreModule } from './modules/about-explore/about-explore.module';
@@ -55,6 +50,7 @@ import { PortfolioModule } from './modules/portfolio/portfolio.module';
 import { InnovationConceptsModule } from './modules/innovation-concepts/innovation-concepts.module';
 import { LifeAboardPhotosModule } from './modules/life-aboard-photos/life-aboard-photos.module';
 import { YachtsModule } from './modules/yachts/yachts.module';
+import { ExperiencesModule } from './modules/experiences/experiences.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -128,15 +124,11 @@ const ENV = process.env.NODE_ENV;
     AboutExploreModule,
     AboutStatsModule,
     AboutStoryModule,
-    EducationModule,
     ServicesModule,
     GalleryModule,
     TestimonialsModule,
     ClientVideoReviewsModule,
-    ChambersModule,
-    AppointmentsModule,
-    PrescriptionsModule,
-    ChiefComplaintsModule,
+    ExperiencesModule,
   ],
 
   controllers: [AppController],

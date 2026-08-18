@@ -24,20 +24,6 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 0,
   },
   {
-    label: 'Appointments',
-    href: '/dashboard/appointments/all-appointments',
-    icon: 'CalendarClock',
-    key: 'appointments',
-    order: 14,
-  },
-  {
-    label: 'Prescriptions',
-    href: '/dashboard/prescriptions/all-prescriptions',
-    icon: 'ClipboardList',
-    key: 'prescriptions',
-    order: 16,
-  },
-  {
     label: 'Video Gallary',
     icon: 'Video',
     key: 'video-gallery-group',
@@ -173,6 +159,13 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 18,
   },
   {
+    label: 'Experiences',
+    href: '/dashboard/experiences/all-experiences',
+    icon: 'Compass',
+    key: 'experiences',
+    order: 30,
+  },
+  {
     label: 'About Section',
     href: '/dashboard/about/all-about',
     icon: 'UserRound',
@@ -201,13 +194,6 @@ export const defaultMenus: DefaultMenuItem[] = [
     order: 21,
   },
   {
-    label: 'Education Section',
-    href: '/dashboard/education/all-education',
-    icon: 'GraduationCap',
-    key: 'education',
-    order: 10,
-  },
-  {
     label: 'Our Services',
     href: '/dashboard/services/all-services',
     icon: 'Stethoscope',
@@ -227,13 +213,6 @@ export const defaultMenus: DefaultMenuItem[] = [
     icon: 'Clapperboard',
     key: 'client-video-reviews',
     order: 13,
-  },
-  {
-    label: 'Chambers',
-    href: '/dashboard/chambers/all-chambers',
-    icon: 'CalendarDays',
-    key: 'chambers',
-    order: 15,
   },
   {
     label: 'question-answers',
