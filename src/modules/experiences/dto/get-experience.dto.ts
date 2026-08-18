@@ -3,14 +3,14 @@ import { Type } from 'class-transformer';
 import { IsBoolean, IsInt, IsOptional, IsString } from 'class-validator';
 import { PaginationQueryDto } from 'src/common/data-query/dto/data-query.dto';
 
-class GetEducationBaseDto {
+class GetExperienceBaseDto {
   @ApiPropertyOptional({
-    description: 'Filter by heading (partial match)',
-    example: 'Qualifications',
+    description: 'Filter by title (partial match)',
+    example: 'Water Sports',
   })
   @IsOptional()
   @IsString()
-  heading?: string;
+  title?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
@@ -25,7 +25,7 @@ class GetEducationBaseDto {
   is_active?: boolean;
 }
 
-export class GetEducationDto extends IntersectionType(
-  GetEducationBaseDto,
+export class GetExperienceDto extends IntersectionType(
+  GetExperienceBaseDto,
   PaginationQueryDto,
 ) {}

@@ -8,7 +8,6 @@ import { Transporter } from 'nodemailer';
 import { OTP } from './entities/mail.entity';
 import { OtpTemplate } from './templates/otp-template';
 import WelcomeEmailTemplate from './templates/welcome-user-email';
-import { AppointmentConfirmationTemplate } from './templates/appointment-confirmation-template';
 
 @Injectable()
 export class MailService {
@@ -147,27 +146,6 @@ export class MailService {
         supportEmail: this.SUPPORT_EMAIL,
         userName: user.name ?? 'User',
       }),
-    });
-  }
-
-  /** ------------------- Appointments ------------------- */
-
-  public async sendAppointmentConfirmation(data: {
-    email: string;
-    patientName: string;
-    status: string;
-    service: string;
-    appointmentDate: string;
-    estimatedTime: string;
-    serialNumber: number;
-    chamberName: string;
-    chamberAddress?: string;
-    fee: number;
-  }): Promise<void> {
-    await this.sendEmail({
-      to: data.email,
-      subject: `Appointment Request Received — Serial #${data.serialNumber}`,
-      html: AppointmentConfirmationTemplate(data),
     });
   }
 

@@ -11,6 +11,7 @@ import { Yacht } from './entities/yacht.entity';
 import { CreateYachtDto } from './dto/create-yacht.dto';
 import { UpdateYachtDto } from './dto/update-yacht.dto';
 import { GetYachtDto } from './dto/get-yacht.dto';
+import { SearchActiveYachtsDto } from './dto/search-active-yachts.dto';
 import { IPagination } from 'src/common/data-query/pagination.interface';
 import { DataQueryService } from 'src/common/data-query/data-query.service';
 import { FileUploadsService } from 'src/common/file-uploads/file-uploads.service';
@@ -147,13 +148,42 @@ export class YachtsService {
   }
 
   /**
-   * Get all active yachts, ordered for the public fleet page
+   * Get all active yachts, ordered for the public fleet page. Supports
+   * optional region and minimum-guest-capacity filters for the site search.
    */
-  async findActive(): Promise<Yacht[]> {
-    return this.yachtRepository.find({
-      where: { is_active: true },
-      order: { position: 'ASC' },
-    });
+  async findActive(query: SearchActiveYachtsDto = {}): Promise<Yacht[]> {
+    const qb = this.yachtRepository
+      .createQueryBuilder('yacht')
+      .where('yacht.is_active = :isActive', { isActive: true });
+
+    if (query.region) {
+      qb.andWhere('yacht.region ILIKE :region', {
+        region: `%${query.region}%`,
+      });
+    }
+
+    if (query.guests_min) {
+      qb.andWhere('yacht.guests >= :guestsMin', {
+        guestsMin: query.guests_min,
+      });
+    }
+
+    return qb.orderBy('yacht.position', 'ASC').getMany();
+  }
+
+  /**
+   * Distinct cruising regions across active yachts — powers the site
+   * search's destination options so they always match real inventory.
+   */
+  async findActiveRegions(): Promise<string[]> {
+    const rows = await this.yachtRepository
+      .createQueryBuilder('yacht')
+      .select('DISTINCT yacht.region', 'region')
+      .where('yacht.is_active = :isActive', { isActive: true })
+      .orderBy('yacht.region', 'ASC')
+      .getRawMany<{ region: string }>();
+
+    return rows.map((row) => row.region);
   }
 
   /**
