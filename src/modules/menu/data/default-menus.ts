@@ -256,4 +256,11 @@ export const defaultMenus: DefaultMenuItem[] = [
     key: 'payments',
     order: 9,
   },
+  {
+    label: 'Support Chat',
+    href: '/dashboard/support-chat',
+    icon: 'MessageCircle',
+    key: 'support-chat',
+    order: 10,
+  },
 ];
