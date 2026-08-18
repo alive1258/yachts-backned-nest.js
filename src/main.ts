@@ -9,7 +9,13 @@ import helmet from 'helmet';
 import compression from 'compression';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  // rawBody:true keeps req.rawBody (a Buffer) available alongside the
+  // normal parsed JSON body — needed by the Stripe webhook route to verify
+  // the request signature, without disabling JSON parsing for every other
+  // route.
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    rawBody: true,
+  });
 
   // Security headers + response compression. The global ValidationPipe and
   // ClassSerializerInterceptor are registered once, via APP_PIPE/
@@ -35,10 +41,8 @@ async function bootstrap() {
    * Swagger API documentation configuration:
    */
   const config = new DocumentBuilder()
-    .setTitle('Medico—Pharmacy E-Commerce Platform Backend Api')
-    .setDescription(
-      'Nest Medico—Pharmacy E-Commerce Platform Backend Api Documentation',
-    )
+    .setTitle('Sustainable Yachts Backend Api')
+    .setDescription('Nest Sustainable Yachts Backend Api Documentation')
     .addServer('http://localhost:5000/api/v1')
     .setTermsOfService('http://localhost:5000/api/v1/terms-of-conditions')
     .setVersion('1.0.0')
@@ -61,7 +65,7 @@ async function bootstrap() {
       tagsSorter: 'alpha',
       operationSorter: 'alpha',
     },
-    customSiteTitle: 'Medico—Pharmacy E-Commerce Platform Backend Api',
+    customSiteTitle: 'Sustainable Yachts Backend Api',
   });
 
   app.use(cookieParser());

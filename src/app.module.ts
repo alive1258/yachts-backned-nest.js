@@ -51,6 +51,8 @@ import { InnovationConceptsModule } from './modules/innovation-concepts/innovati
 import { LifeAboardPhotosModule } from './modules/life-aboard-photos/life-aboard-photos.module';
 import { YachtsModule } from './modules/yachts/yachts.module';
 import { ExperiencesModule } from './modules/experiences/experiences.module';
+import { BookingsModule } from './modules/bookings/bookings.module';
+import { PaymentsModule } from './modules/payments/payments.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -129,6 +131,8 @@ const ENV = process.env.NODE_ENV;
     TestimonialsModule,
     ClientVideoReviewsModule,
     ExperiencesModule,
+    BookingsModule,
+    PaymentsModule,
   ],
 
   controllers: [AppController],

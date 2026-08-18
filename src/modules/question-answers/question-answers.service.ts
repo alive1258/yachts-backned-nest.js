@@ -77,6 +77,16 @@ export class QuestionAnswersService {
   }
 
   /**
+   * Get all active Question Answers, for the public FAQ section
+   */
+  public async findActive(): Promise<QuestionAnswer[]> {
+    return this.questionAnswerRepository.find({
+      where: { is_active: true },
+      order: { created_at: 'ASC' },
+    });
+  }
+
+  /**
    * Get single Question Answer by UUID
    */
   public async findOne(id: string) {
