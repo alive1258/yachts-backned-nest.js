@@ -184,6 +184,48 @@ export class PaymentsService {
     await this.bookingRepository.save(booking);
   }
 
+  /**
+   * Fallback reconciliation, called by the frontend when it lands back on
+   * the confirmation page. Webhooks are the source of truth, but they
+   * require Stripe to be able to reach this server (a public URL, or the
+   * Stripe CLI tunnel in local dev) — this lets the browser force a sync
+   * against Stripe directly so the UI doesn't hang if the webhook was
+   * delayed or never delivered.
+   */
+  async verifySession(sessionId: string, req: Request): Promise<{ status: string }> {
+    const userId = req?.user?.sub;
+    if (!userId) throw new UnauthorizedException('Authentication required.');
+
+    const payment = await this.paymentRepository.findOne({
+      where: { stripe_checkout_session_id: sessionId },
+    });
+    if (!payment) throw new NotFoundException('Payment not found for this session.');
+
+    const isOwner = payment.user_id === userId;
+    const isAuthorizedStaff =
+      req.user?.isSuperAdmin || req.user?.permissions?.['payments']?.view;
+    if (!isOwner && !isAuthorizedStaff) {
+      throw new ForbiddenException('You cannot verify this payment.');
+    }
+
+    if (payment.status === 'succeeded') {
+      return { status: payment.status };
+    }
+
+    const session = await this.stripe.checkout.sessions.retrieve(sessionId);
+
+    if (session.payment_status === 'paid' || session.status === 'complete') {
+      await this.markSessionSucceeded(session);
+      return { status: 'succeeded' };
+    }
+    if (session.status === 'expired') {
+      await this.markSessionFailed(session.id);
+      return { status: 'failed' };
+    }
+
+    return { status: payment.status };
+  }
+
   private async markSessionFailed(sessionId: string): Promise<void> {
     const payment = await this.paymentRepository.findOne({
       where: { stripe_checkout_session_id: sessionId },

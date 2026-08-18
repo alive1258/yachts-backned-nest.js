@@ -54,6 +54,18 @@ export class PaymentsController {
   }
 
   @ApiDoc({
+    summary: 'Verify Checkout Session',
+    description:
+      "Force-syncs a Payment/Booking against Stripe's own record of a Checkout Session. Fallback for when the webhook hasn't landed yet (or can't reach this server, e.g. local dev).",
+    status: HttpStatus.OK,
+  })
+  @UseGuards(JwtOrApiKeyGuard)
+  @Get('verify-session')
+  verifySession(@Query('session_id') sessionId: string, @Req() req: Request) {
+    return this.paymentsService.verifySession(sessionId, req);
+  }
+
+  @ApiDoc({
     summary: 'Get my Payments',
     description: "Retrieves the authenticated user's own payment history.",
     status: HttpStatus.OK,
