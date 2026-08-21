@@ -12,13 +12,10 @@ RUN npm install
 
 COPY . .
 
-# Verify Nest CLI
 RUN npx nest --version
 
-# Build
 RUN npm run build
 
-# Verify dist exists
 RUN echo "===== DIST =====" && find dist -type f
 
 EXPOSE 5004
