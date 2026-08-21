@@ -16,6 +16,8 @@
   <a href="#"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></a>
   <a href="#"><img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white" alt="Stripe"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Socket.IO-010101?style=for-the-badge&logo=socket.io&logoColor=white" alt="Socket.IO"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis"/></a>
 </p>
 
 ---
@@ -25,6 +27,7 @@
 - [Overview](#-overview)
 - [Key Features](#-key-features)
 - [Booking & Payment Flow](#-booking--payment-flow)
+- [Real-Time Support Chat](#-real-time-support-chat)
 - [Modules](#-modules)
 - [Security Implementation](#-security-implementation)
 - [Getting Started](#-getting-started)
@@ -60,6 +63,19 @@
 - Signature-verified webhook reconciliation (`checkout.session.completed` / `.expired`)
 - Payment history per booking, per user, and admin-wide
 
+### 💬 Real-Time Support Chat (Socket.IO)
+
+- Dedicated `/chat` WebSocket namespace, authenticated off the same HTTP-only JWT cookie used by the REST API — no separate token handshake
+- One persistent thread per customer; staff get a live inbox of every open conversation, gated behind a `support-chat` view/edit permission
+- Live delivery of new messages, typing indicators, read receipts, and online/offline presence, backed by a REST history endpoint for reconnect/reload
+- Multi-tab/multi-device aware — a user's presence only flips offline once their last open socket disconnects
+- Per-socket fixed-window rate limiting on message sends to prevent spam/abuse
+
+### 👤 Accounts & Profiles
+
+- Self-service profile management (name, avatar, contact details) for both customers and staff
+- Every customer account is tied to its booking history, payment history, and support chat thread
+
 ### 📝 Content & Marketing
 
 - Destinations, Experiences, Portfolio, Events
@@ -80,12 +96,26 @@
 
 ---
 
+## 💬 Real-Time Support Chat
+
+Built on `@nestjs/websockets` + `socket.io`, running on its own `/chat` namespace alongside the REST API:
+
+1. Client connects with `withCredentials: true`; `ChatGateway.handleConnection` reads the `accessToken` HTTP-only cookie straight off the handshake headers and verifies it with `JwtService` — the same trust boundary as every REST request, no extra login step.
+2. **Customers** are auto-joined to a private `conversation:{id}` room (`ChatService.getOrCreateForCustomer` creates the thread on first contact). **Staff** are joined to a shared `staff` room, gated by the `support-chat` view permission from the role/permission matrix.
+3. `message:send` persists the message via `ChatService.createMessage`, then fans it out to `conversation:{id}` (both parties) and to `staff` (so the inbox list updates live even for threads not currently open).
+4. `conversation:read` / `typing:start` / `typing:stop` drive read receipts and typing indicators; `presence:update` tells staff when a customer comes online or goes offline, deduplicated across multiple open tabs/devices per user.
+5. A parallel REST surface (`GET /chat/conversations/mine`, `GET /chat/conversations`, `GET /chat/conversations/:id/messages`) backs initial page load, reconnects, and paginated history — the socket is for live delivery only.
+6. Every socket is fixed-window rate-limited (8 messages / 10s) server-side, independent of the HTTP throttler guarding the REST routes.
+
+---
+
 ## 📦 Modules
 
 | Domain            | Modules                                                                                 |
 | ------------------ | ---------------------------------------------------------------------------------------- |
 | **Auth & Access**   | `auth`, `users`, `roles`                                                                 |
 | **Booking & Pay**   | `yachts`, `bookings`, `payments`                                                          |
+| **Support**         | `chat` (REST + Socket.IO `/chat` gateway)                                                |
 | **Content**         | `destinations`, `experiences`, `portfolio`, `events`, `services`, `hero`                 |
 | **Sustainability**  | `sustainability`, `sustainability-intro`, `sustainability-pillars`, `sustainability-roadmap`, `life-aboard-photos`, `innovation-concepts` |
 | **About**           | `about`, `about-story`, `about-stats`, `about-explore`, `employees`                       |
@@ -99,6 +129,7 @@
 - **Authentication:** sign-up/sign-in → OTP email → JWT access + refresh tokens set as HTTP-only, `Secure`, `SameSite=None` cookies.
 - **Authorization:** role/permission matrix checked per-route via `PermissionsGuard`; Super Admin bypasses permission checks.
 - **Payments:** Stripe secret key never touches the client; webhook signature is verified against `Webhook_secret` before any reconciliation.
+- **Real-time:** `/chat` gateway independently verifies the JWT cookie on every socket connection (no implicit trust from the HTTP layer); staff sockets are additionally checked against the `support-chat` permission before joining the shared inbox room, and message sends are rate-limited per socket.
 - **Headers:** `helmet()` + `compression()` applied globally; CORS restricted to an explicit origin allowlist.
 
 ---

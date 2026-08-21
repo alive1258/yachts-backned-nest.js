@@ -11,24 +11,13 @@ import { getAllowedOrigins } from './config/cors-origins';
 import { SocketIoAdapter } from './common/adapters/socket-io.adapter';
 
 async function bootstrap() {
-  // rawBody:true keeps req.rawBody (a Buffer) available alongside the
-  // normal parsed JSON body — needed by the Stripe webhook route to verify
-  // the request signature, without disabling JSON parsing for every other
-  // route.
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     rawBody: true,
   });
 
-  // Security headers + response compression. The global ValidationPipe and
-  // ClassSerializerInterceptor are registered once, via APP_PIPE/
-  // APP_INTERCEPTOR in app.module.ts — not duplicated here.
   app.use(helmet());
   app.use(compression());
 
-  /**
-   * Set a global prefix for all API routes
-   * All routes will now start with api/v1
-   */
   app.setGlobalPrefix('/api');
 
   // Enable Version
@@ -72,8 +61,6 @@ async function bootstrap() {
 
   app.use(cookieParser());
 
-  // Real-time chat (Socket.IO) — must share the HTTP layer's CORS/credentials
-  // setup, since the handshake carries the same httpOnly auth cookie.
   app.useWebSocketAdapter(new SocketIoAdapter(app, configService));
 
   // CORS Configaration
