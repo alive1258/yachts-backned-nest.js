@@ -8,7 +8,7 @@ import { ConfigService } from '@nestjs/config';
 export function getAllowedOrigins(configService: ConfigService): string[] {
   return [
     'http://localhost:3000',
-    'https://medico-e-commerce-website-next-js-f.vercel.app',
+    'https://sustainable-yacht-website.vercel.app',
     configService.getOrThrow<string>('FRONTEND_URL'),
   ];
 }

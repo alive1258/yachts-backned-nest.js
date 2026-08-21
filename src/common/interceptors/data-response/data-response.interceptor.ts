@@ -26,13 +26,14 @@ export class DataResponseInterceptor<
     const request = context.switchToHttp().getRequest<Request>();
     const response = context.switchToHttp().getResponse<Response>();
     // const domain = this.configService.get<string>('BASE_DOMAIN_NAME');
+    const domain = 'doctordairytools.com/';
 
     const setCookie = (name: string, value: string, maxAge: number): void => {
       response.cookie(name, value, {
         httpOnly: true,
         sameSite: 'none',
         secure: true,
-        // domain,
+        domain,
         path: '/',
         maxAge,
       });
@@ -43,7 +44,7 @@ export class DataResponseInterceptor<
         httpOnly: true,
         sameSite: 'none',
         secure: true,
-        // domain,
+        domain,
         path: '/',
       });
     };
