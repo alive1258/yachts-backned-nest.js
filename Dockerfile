@@ -1,4 +1,8 @@
-FROM node:22-alpine AS builder
+FROM node:22-alpine
+
+RUN apk add --no-cache tzdata
+
+ENV TZ=Asia/Dhaka
 
 WORKDIR /app
 
@@ -8,21 +12,15 @@ RUN npm install
 
 COPY . .
 
+# Verify Nest CLI
+RUN npx nest --version
+
+# Build
 RUN npm run build
 
-
-FROM node:22-alpine AS production
-
-WORKDIR /app
-
-ENV NODE_ENV=production
-
-COPY package*.json ./
-
-RUN npm install --omit=dev
-
-COPY --from=builder /app/dist ./dist
+# Verify dist exists
+RUN echo "===== DIST =====" && find dist -type f
 
 EXPOSE 5004
 
-CMD ["node", "dist/main.js"]
+CMD ["node", "dist/src/main.js"]
