@@ -8,6 +8,7 @@ import { ConfigService } from '@nestjs/config';
 export function getAllowedOrigins(configService: ConfigService): string[] {
   return [
     'http://localhost:3000',
+    'https://eco.doctordairytools.com',
     'https://sustainable-yacht-website.vercel.app',
     configService.getOrThrow<string>('FRONTEND_URL'),
   ];
