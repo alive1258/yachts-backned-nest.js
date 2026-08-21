@@ -12,8 +12,6 @@ RUN npm install
 
 COPY . .
 
-RUN npx nest --version
-
 RUN npm run build
 
 RUN echo "===== DIST =====" && find dist -type f
