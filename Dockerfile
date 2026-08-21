@@ -8,13 +8,20 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+# Build dependencies including Nest CLI
+ENV NODE_ENV=development
+RUN npm ci --include=dev
 
 COPY . .
 
+# Build NestJS
 RUN npm run build
 
+# Check build output
 RUN echo "===== DIST =====" && find dist -type f
+
+# Runtime
+ENV NODE_ENV=production
 
 EXPOSE 5004
 
