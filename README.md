@@ -151,6 +151,11 @@ npm run start:dev
 
 API available at `http://localhost:5000/api/v1`, Swagger docs at `http://localhost:5000/api/v1/swagger`.
 
+### 🌐 Live Deployment
+
+- **API:** [https://yachts-backned-nest-js.onrender.com/api/v1](https://yachts-backned-nest-js.onrender.com/api/v1)
+- **Swagger Docs:** [https://yachts-backned-nest-js.onrender.com/api/v1/swagger](https://yachts-backned-nest-js.onrender.com/api/v1/swagger)
+
 ---
 
 ## License

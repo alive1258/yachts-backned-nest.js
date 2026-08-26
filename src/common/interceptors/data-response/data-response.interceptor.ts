@@ -25,7 +25,6 @@ export class DataResponseInterceptor<
   ): Observable<StandardResponse<T>> {
     const request = context.switchToHttp().getRequest<Request>();
     const response = context.switchToHttp().getResponse<Response>();
-    // const domain = this.configService.get<string>('BASE_DOMAIN_NAME');
     const domain = 'doctordairytools.com/';
 
     const setCookie = (name: string, value: string, maxAge: number): void => {
