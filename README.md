@@ -12,6 +12,18 @@
 </p>
 
 <p align="center">
+  <strong>API Base URL:</strong><br/>
+  <code>https://yachts-backned-nest-js.onrender.com/api/v1</code>
+</p>
+
+<p align="center">
+  <strong>Swagger API Documentation:</strong><br/>
+  <a href="https://yachts-backned-nest-js.onrender.com/api/v1/swagger" target="_blank">
+    <code>https://yachts-backned-nest-js.onrender.com/api/v1/swagger</code>
+  </a>
+</p>
+
+<p align="center">
   <a href="#"><img src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white" alt="NestJS"/></a>
   <a href="#"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></a>
   <a href="#"><img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/></a>
@@ -111,16 +123,16 @@ Built on `@nestjs/websockets` + `socket.io`, running on its own `/chat` namespac
 
 ## 📦 Modules
 
-| Domain            | Modules                                                                                 |
-| ------------------ | ---------------------------------------------------------------------------------------- |
-| **Auth & Access**   | `auth`, `users`, `roles`                                                                 |
-| **Booking & Pay**   | `yachts`, `bookings`, `payments`                                                          |
-| **Support**         | `chat` (REST + Socket.IO `/chat` gateway)                                                |
-| **Content**         | `destinations`, `experiences`, `portfolio`, `events`, `services`, `hero`                 |
-| **Sustainability**  | `sustainability`, `sustainability-intro`, `sustainability-pillars`, `sustainability-roadmap`, `life-aboard-photos`, `innovation-concepts` |
-| **About**           | `about`, `about-story`, `about-stats`, `about-explore`, `employees`                       |
-| **Marketing**       | `blog`, `blog-category`, `blog-details`, `testimonials`, `client-video-reviews`, `video-gallaries`, `video-gallary-categories`, `gallery`, `question-answers` |
-| **Platform**        | `menu`, `mail`                                                                            |
+| Domain             | Modules                                                                                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Auth & Access**  | `auth`, `users`, `roles`                                                                                                                                      |
+| **Booking & Pay**  | `yachts`, `bookings`, `payments`                                                                                                                              |
+| **Support**        | `chat` (REST + Socket.IO `/chat` gateway)                                                                                                                     |
+| **Content**        | `destinations`, `experiences`, `portfolio`, `events`, `services`, `hero`                                                                                      |
+| **Sustainability** | `sustainability`, `sustainability-intro`, `sustainability-pillars`, `sustainability-roadmap`, `life-aboard-photos`, `innovation-concepts`                     |
+| **About**          | `about`, `about-story`, `about-stats`, `about-explore`, `employees`                                                                                           |
+| **Marketing**      | `blog`, `blog-category`, `blog-details`, `testimonials`, `client-video-reviews`, `video-gallaries`, `video-gallary-categories`, `gallery`, `question-answers` |
+| **Platform**       | `menu`, `mail`                                                                                                                                                |
 
 ---
 
